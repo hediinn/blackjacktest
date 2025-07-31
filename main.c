@@ -34,16 +34,18 @@ typedef struct card{
 
 typedef card cards[52] ;
 
-void shuffle(cards ccs){
-
-    for(int i = 0;i<52;i++){
+void swap(card *restrict c1, card *restrict c2) {
         card s;
+        s = *c1;
+        *c1 = *c2;
+        *c2 = s;
+
+
+}
+void shuffle(cards ccs){
+    for(int i = 0;i<52;i++){
         int ran = rand()%52;
-        s.num = ccs[ran].num;
-        s.name = ccs[ran].name;
-        s.suit = ccs[ran].suit;
-        ccs[ran] = ccs[i];
-        ccs[i] = s;
+        swap(&ccs[ran], &ccs[i]);
 
     }
    
@@ -86,7 +88,7 @@ int main() {
     shuffle(cs);
     shuffle(cs);
     shuffle(cs);
-     for (int i = 0; i<3; i++) {
+    for (int i = 0; i<3; i++) {
         s = cs[i]; 
         printf("card name: %s of %s | val: %d \n", s.name, s.suit, s.num);
     }   
