@@ -39,18 +39,34 @@ void swap(card *restrict c1, card *restrict c2) {
         s = *c1;
         *c1 = *c2;
         *c2 = s;
+}
 
 
+void cutDeck(cards ccs){
+    for(int i = 0;i<26;i++){
+        //printf("card1: %s %s | card2: %s %s \n",ccs[i].name, ccs[i].suit,ccs[i+26].name, ccs[i+26].suit);
+        swap(&ccs[i], &ccs[i+26]);
+    }
 }
 void shuffle(cards ccs){
     for(int i = 0;i<52;i++){
         int ran = rand()%52;
         swap(&ccs[ran], &ccs[i]);
+    }
+}
+void Diff_shuffle(cards ccs){
+    cards cd;
+    for(int i = 0;i<26;i++){
+        int c1 = i;
+        int c2 = i+26;
+        cd[i*2] = ccs[c2];
+        cd[(i*2)+1] = ccs[i];
 
     }
-   
+    for(int i = 0;i<52;i++){
+        swap(&ccs[i], &cd[i]);
+    }
 }
-
 void printDeck(cards ccs){
     card s;
     for (int i = 0; i<52; i++) {
@@ -85,10 +101,11 @@ int main() {
         s = cs[i]; 
         printf("card name: %s of %s | val: %d \n", s.name, s.suit, s.num);
     } 
-    shuffle(cs);
-    shuffle(cs);
-    shuffle(cs);
-    for (int i = 0; i<3; i++) {
+    //shuffle(cs);
+    //cutDeck(cs);
+    //shuffle(cs);
+    Diff_shuffle(cs);
+    for (int i = 0; i<4; i++) {
         s = cs[i]; 
         printf("card name: %s of %s | val: %d \n", s.name, s.suit, s.num);
     }   
