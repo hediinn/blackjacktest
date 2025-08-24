@@ -12,6 +12,7 @@ namespace BlackJackTest
         bool WantCard(IPlayer opponents);
         string GetName();
         Hand GetHand();
+        int Money();
     }
 
     public enum PlayerState

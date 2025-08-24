@@ -7,6 +7,7 @@ namespace BlackJackTest
         private List<IPlayer> _players = new();
         private List<IPlayer> _dealer;
         private Game _game;
+        private List<int> wins = [0,0,0];
 
         public Table(List<IPlayer> players, List<IPlayer> dealer, Game game)
         {
@@ -94,23 +95,45 @@ namespace BlackJackTest
             {
                 GetGame().PlayRound(GiveDealer().First(), GetPlayers());
             }
-
-            foreach (var item in GetPlayers())
+            if (false)
             {
-                item.PrintHand();
-                Console.WriteLine($"{item.GetPlayerState()}");
-                Console.WriteLine($"{item.KnownScore()}");
-                Console.WriteLine($"{item.GetName()}");
-                Console.WriteLine("---------------------------------");
+                foreach (var item in GetPlayers())
+                {
+                    item.PrintHand();
+                    Console.WriteLine($"{item.GetPlayerState()}");
+                    Console.WriteLine($"{item.KnownScore()}");
+                    Console.WriteLine($"{item.GetName()}");
+                    Console.WriteLine("---------------------------------");
+                }
+
+                GiveDealer().First().PrintHand();
+
+
             }
-
-            GiveDealer().First().PrintHand();
-
             Console.WriteLine("#---------------------------------#");
             foreach (var item in GetPlayers())
             {
-                Console.WriteLine($"{Utils.WhoWon(item, GiveDealer().First()).GetName()} Won");
+                IPlayer winningPlayer = Utils.WhoWon(item, GiveDealer().First());
+                if (winningPlayer == item)
+                {
+                    item.PayOut(5);
+                    GiveDealer().First().PayOut(-5);
+                }
+                else
+                {
+                    item.PayOut(-5);
+                    GiveDealer().First().PayOut(5);
+                }
+                Console.WriteLine($"{winningPlayer.GetName()} Won");
             }
+            
+            Console.WriteLine("#---------------------------------#");
+
+            foreach (var item in GetPlayers())
+            {
+                Console.WriteLine($"{item.GetName()} : {item.Money()}");
+            }
+            Console.WriteLine($"{GiveDealer().First().GetName()} : {GiveDealer().First().Money()}");
             Console.WriteLine("#---------------------------------#");
         }
 

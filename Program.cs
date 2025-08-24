@@ -10,11 +10,13 @@ Game game = new(2);
 List<IPlayer> players = [player,player2];
 List<IPlayer> opps = [oppon];
 Table table = new(players, opps, game);
-table.Shuffle(5);
-table.GiveHandsToPlayers();
-table.PlayAGame();
-table.ResetGame();
-
+for (int i = 0; i < 5; i++)
+{
+    table.Shuffle(5);
+    table.GiveHandsToPlayers();
+    table.PlayAGame();
+    table.ResetGame();
+}
 
 
 

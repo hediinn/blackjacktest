@@ -7,17 +7,22 @@ namespace BlackJackTest
         private string _name = "";
         private Hand _cards = new();
         private PlayerState playerState = PlayerState.EmptyHand;
+        public int _bank = 1000;
 
         public DealerPlayer()
         {
             _name = "Dealer";
         }
 
+        public int Money()
+        {
+            return _bank;
+        }
         public void Bet()
         {
             throw new NotImplementedException();
         }
-        
+
         public bool CanSplit()
         {
             throw new NotImplementedException();
@@ -47,7 +52,7 @@ namespace BlackJackTest
 
         public void PayOut(int money)
         {
-            throw new NotImplementedException();
+            _bank += money;
         }
 
         public void PrintHand()
