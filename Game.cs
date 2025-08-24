@@ -1,16 +1,11 @@
-
-
 using System.Diagnostics;
 using System.Reflection;
 using static BlackJackTest.Shoe;
 namespace BlackJackTest
 {
-
     public class Game
     {
-
         Shoe shoe = new();
-
 
         public Game(int deckCount)
         {
@@ -19,18 +14,22 @@ namespace BlackJackTest
                 shoe.AddDeck();
             }
         }
+
         public int DeckSize()
         {
             return shoe.Size();
         }
+
         public void ShuffleShoe()
         {
             shoe.StackOfCards = RandomShuffle(shoe.StackOfCards);
         }
+
         public void AddDiscardToDeck()
         {
             shoe.ResetDecks();
         }
+
         public void ShuffleShoe(int coi)
         {
             shoe.StackOfCards = PerfectShuffle(shoe.StackOfCards);
@@ -46,10 +45,12 @@ namespace BlackJackTest
             }
 
         }
+
         private void GivePlayerACard(IPlayer player1)
         {
             player1.TakeCard(shoe.GiveCard());
         }
+
         public void GivePlayerAHand(IPlayer player1)
         {
 
@@ -78,6 +79,7 @@ namespace BlackJackTest
             }
             return true;
         }
+
         public void GiveHandBack(Hand cards)
         {
             foreach (var item in cards)
@@ -85,8 +87,6 @@ namespace BlackJackTest
                 shoe.AddCardToDiscard(item);
             }
             Debug.Assert(cards.ResetHand() == 0);
-
         }
-
     }   
 }

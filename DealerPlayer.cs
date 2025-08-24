@@ -1,28 +1,23 @@
-
-
-
 namespace BlackJackTest
 {
     public class DealerPlayer : IPlayer
     {
         int current_count = 0;
-
         private readonly int standVal = 17;
-
         private string _name = "";
         private Hand _cards = new();
-
         private PlayerState playerState = PlayerState.EmptyHand;
 
         public DealerPlayer()
         {
             _name = "Dealer";
         }
+
         public void Bet()
         {
             throw new NotImplementedException();
         }
-
+        
         public bool CanSplit()
         {
             throw new NotImplementedException();
@@ -82,12 +77,10 @@ namespace BlackJackTest
             {
                 playerState = PlayerState.Dealer;
             }
-
         }
 
         public bool WantCard(IPlayer opponents)
         {
-
             bool iWantCard = true;
             if (playerState == PlayerState.Dealer)
             {
@@ -117,13 +110,11 @@ namespace BlackJackTest
                 iWantCard = false;
             }
             return iWantCard;
-
         }
+
         public Hand GetHand()
         {
             return _cards;
         }
     }
-
-
 }

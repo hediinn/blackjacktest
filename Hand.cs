@@ -1,4 +1,3 @@
-
 using System.Collections;
 
 namespace BlackJackTest
@@ -11,24 +10,24 @@ namespace BlackJackTest
         {
             hand.Add(c);
         }
+
         public IEnumerator<Card> GetEnumerator()
         {
             foreach (Card item in hand)
             {
                 yield return item;
-
             }
         }
    
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-    public int ResetHand()
-    {
-        hand.Clear();
-        return hand.Count;    
-    }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
+        public int ResetHand()
+        {
+            hand.Clear();
+            return hand.Count;    
+        }
     }   
 }

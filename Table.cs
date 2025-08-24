@@ -1,14 +1,9 @@
-
-
 using System.Diagnostics;
 
 namespace BlackJackTest
 {
-
-
     public class Table
     {
-
         private List<IPlayer> _players = new();
         private List<IPlayer> _dealer;
         private Game _game;
@@ -32,6 +27,7 @@ namespace BlackJackTest
             }
             return coun == _players.Count;
         }
+
         private IPlayer? GiveUndonePlayer()
         {
             foreach (var item in _players)
@@ -42,8 +38,8 @@ namespace BlackJackTest
                 }
             }
             return null;
-
         }
+
         private List<IPlayer> GiveDealer()
         {
             return _dealer;
@@ -67,15 +63,14 @@ namespace BlackJackTest
             foreach (var item in _players)
             {
                 _game.GivePlayerAHand(item);
-
             }
-
         }
 
         internal void Shuffle(int v)
         {
             _game.ShuffleShoe(v);
         }
+
         public Game GetGame()
         {
             return _game;
@@ -93,8 +88,8 @@ namespace BlackJackTest
                     state = GetGame().PlayRound(active, GiveDealer());
                 }
                 state = !AreAllPlayersDone();
-
             }
+
             for (int i = 0; i < 30; i++)
             {
                 GetGame().PlayRound(GiveDealer().First(), GetPlayers());
@@ -108,7 +103,9 @@ namespace BlackJackTest
                 Console.WriteLine($"{item.GetName()}");
                 Console.WriteLine("---------------------------------");
             }
+
             GiveDealer().First().PrintHand();
+
             Console.WriteLine("#---------------------------------#");
             foreach (var item in GetPlayers())
             {
@@ -122,6 +119,7 @@ namespace BlackJackTest
             _game.AddDiscardToDeck();
             return _game.DeckSize();
         }
+
         public void ResetGame()
         {
             foreach (var item in _dealer)
@@ -129,13 +127,12 @@ namespace BlackJackTest
                 _game.GiveHandBack(item.GetHand());
                 Debug.Assert(item.GetHand().Count() == 0);
             }
+
             foreach (var item in _players)
             {
                 _game.GiveHandBack(item.GetHand());
                 Debug.Assert(item.GetHand().Count() == 0);
-
             }
-
         }
     }   
 }

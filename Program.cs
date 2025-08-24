@@ -2,9 +2,6 @@
 using System;
 using BlackJackTest;
 
-
-
-
 IPlayer player = new Player("player");
 IPlayer player2 = new Player("player2");
 IPlayer oppon = new DealerPlayer();

@@ -1,4 +1,3 @@
-
 namespace BlackJackTest
 {
     public interface IPlayer
@@ -7,28 +6,19 @@ namespace BlackJackTest
         bool CanSplit();
         int KnownScore();
         PlayerState GetPlayerState();
-
         void PayOut(int money);
-
         public void TakeCard(Card c);
-
         public void PrintHand();
-
         bool WantCard(IPlayer opponents);
-
         string GetName();
         Hand GetHand();
-
     }
 
     public enum PlayerState
     {
-        EmptyHand,
-        OneCard,
-        NewHand,
-        Bust,
-        TwentyOne,
-        Stand,
+        EmptyHand, OneCard,
+        NewHand, Bust,
+        TwentyOne, Stand,
         Dealer
     }
 }

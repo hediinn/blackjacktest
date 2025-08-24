@@ -29,9 +29,9 @@ namespace BlackJackTest
                 _ => false,
             };
         }
+
         public static IPlayer WhoWon(IPlayer player, IPlayer opponents)
         {
-
             if (player.GetPlayerState() == PlayerState.Bust ||
                 player.KnownScore() < opponents.KnownScore() &&
                 opponents.GetPlayerState() != PlayerState.Bust

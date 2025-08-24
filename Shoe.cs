@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Reflection.Metadata;
 
@@ -23,10 +22,12 @@ namespace BlackJackTest
             }
 
         }
+
         public int Size()
         {
             return StackOfCards.Count;
         }
+
         public void PrintStack()
         {
 
@@ -62,6 +63,7 @@ namespace BlackJackTest
             }
             return cards;
         }
+
         public Card GiveCard()
         {
             Card c = StackOfCards.First();

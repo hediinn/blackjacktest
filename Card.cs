@@ -14,7 +14,6 @@ namespace BlackJackTest
     }
     public class Card
     {
-
         public Card(Names name, int value, Suit s)
         {
             this.Name = name;
@@ -25,6 +24,7 @@ namespace BlackJackTest
         public int Value { get; set; }
         public Names Name { get; }
         public Suit Suitt { get; }
+
         public string StringOfMe()
         {
             return $"{Name} of {Suitt} {Value}";   

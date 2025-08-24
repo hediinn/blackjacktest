@@ -1,12 +1,9 @@
-
 namespace BlackJackTest
 {
     public class Player : IPlayer
     {
         int current_count = 0;
-
         private readonly int standVal = 16;
-
         private string _name = "";
         private Hand _cards = new();
         private PlayerState playerState = PlayerState.EmptyHand;
@@ -15,7 +12,6 @@ namespace BlackJackTest
         {
             _name = n;            
         }
-
 
         public void Bet()
         {
@@ -33,7 +29,6 @@ namespace BlackJackTest
             if (counst == 2)
             {
                 return true;
-
             }
             return false;
         }
@@ -56,10 +51,12 @@ namespace BlackJackTest
 
             }
         }
+
         public void PayOut(int money)
         {
             throw new NotImplementedException();
         }
+
         public void TakeCard(Card c)
         {
             _cards.Add(c);
@@ -115,6 +112,7 @@ namespace BlackJackTest
         {
             return _name;
         }
+
         public Hand GetHand()
         {
             return _cards;
