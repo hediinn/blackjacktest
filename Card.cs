@@ -2,26 +2,15 @@ namespace BlackJackTest
 {
     public enum Suit
     {
-        Spade, 	
-        Heart,
-        Diamond,
-        Club
+        Spade, Heart,
+        Diamond, Club
     }
     public enum Names
     {
-        Ace = 1,
-        Two,
-        Three,
-        Four,
-        Five,
-        Six,
-        Seven,
-        Eight,
-        Nine,
-        Ten,
-        Jack,
-        Queen,
-        King
+        Ace = 1, Two, Three,
+        Four, Five, Six,
+        Seven, Eight, Nine,
+        Ten, Jack, Queen, King
     }
     public class Card
     {
@@ -38,7 +27,6 @@ namespace BlackJackTest
         public Suit Suitt { get; }
         public string StringOfMe()
         {
-                
             return $"{Name} of {Suitt} {Value}";   
         }
     }

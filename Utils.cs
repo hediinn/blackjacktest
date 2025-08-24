@@ -1,9 +1,7 @@
-
 namespace BlackJackTest
 {
     public static class Utils
     {
-
         public static int ScoreHand(Hand h)
         {
             int score = 0;
@@ -37,15 +35,14 @@ namespace BlackJackTest
             if (player.GetPlayerState() == PlayerState.Bust ||
                 player.KnownScore() < opponents.KnownScore() &&
                 opponents.GetPlayerState() != PlayerState.Bust
-          )
+            )
             {
-                return (opponents);
+                return opponents;
             }
             else
             {
-                return (player);
+                return player;
             }
-
         }
     }
 }

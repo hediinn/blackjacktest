@@ -51,8 +51,6 @@ namespace BlackJackTest
 
         public static IList<Card> RandomShuffle(IList<Card> cards)
         {
-
-
             int n = cards.Count;
             while (n > 1)
             {
