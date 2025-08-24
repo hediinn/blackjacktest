@@ -17,6 +17,7 @@ namespace BlackJackTest
         bool WantCard(IPlayer opponents);
 
         string GetName();
+        Hand GetHand();
 
     }
 
@@ -27,6 +28,7 @@ namespace BlackJackTest
         NewHand,
         Bust,
         TwentyOne,
-        Stand
+        Stand,
+        Dealer
     }
 }

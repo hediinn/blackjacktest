@@ -1,22 +1,23 @@
 
+
+
 namespace BlackJackTest
 {
-    public class Player : IPlayer
+    public class DealerPlayer : IPlayer
     {
         int current_count = 0;
 
-        private readonly int standVal = 16;
+        private readonly int standVal = 17;
 
         private string _name = "";
         private Hand _cards = new();
+
         private PlayerState playerState = PlayerState.EmptyHand;
 
-        public Player(string n)
+        public DealerPlayer()
         {
-            _name = n;            
+            _name = "Dealer";
         }
-
-
         public void Bet()
         {
             throw new NotImplementedException();
@@ -24,18 +25,12 @@ namespace BlackJackTest
 
         public bool CanSplit()
         {
-            if (_cards.Count() != 2)
-            {
-                return false;
-            }
-            Card card1 = _cards.First();
-            int counst = _cards.Count(e => e.Value == card1.Value);
-            if (counst == 2)
-            {
-                return true;
+            throw new NotImplementedException();
+        }
 
-            }
-            return false;
+        public string GetName()
+        {
+            return _name;
         }
 
         public PlayerState GetPlayerState()
@@ -45,21 +40,36 @@ namespace BlackJackTest
 
         public int KnownScore()
         {
-            return Utils.ScoreHand(_cards);
-        }
-
-        public void PrintHand()
-        {
-            foreach (Card item in _cards)
+            if (playerState == PlayerState.Dealer)
             {
-                Console.WriteLine($"{item.StringOfMe()}");
-
+                return _cards.First().Value;
+            }
+            else
+            {
+                return Utils.ScoreHand(_cards);
             }
         }
+
         public void PayOut(int money)
         {
             throw new NotImplementedException();
         }
+
+        public void PrintHand()
+        {
+            if (playerState == PlayerState.Dealer)
+            {
+                Console.WriteLine($"{_cards.First().StringOfMe()}");
+            }
+            else
+            {
+                foreach (Card item in _cards)
+                {
+                    Console.WriteLine($"{item.StringOfMe()}");
+                }
+            }
+        }
+
         public void TakeCard(Card c)
         {
             _cards.Add(c);
@@ -70,22 +80,20 @@ namespace BlackJackTest
             }
             else if (_cards.Count() == 2)
             {
+                playerState = PlayerState.Dealer;
+            }
+
+        }
+
+        public bool WantCard(IPlayer opponents)
+        {
+
+            bool iWantCard = true;
+            if (playerState == PlayerState.Dealer)
+            {
                 playerState = PlayerState.NewHand;
             }
-            if (current_count > 21)
-            {
-                playerState = PlayerState.Bust;
-            }
-            else if (current_count == 21)
-            {
-                playerState = PlayerState.TwentyOne;
-            }
-        }
-        
-        public bool WantCard(IPlayer opponent)
-        {
-            bool iWantCard = true;
-            if (opponent.KnownScore() > KnownScore())
+            if (opponents.KnownScore() > KnownScore())
             {
                 iWantCard = true;
             }
@@ -104,20 +112,18 @@ namespace BlackJackTest
                 playerState = PlayerState.TwentyOne;
                 iWantCard = false;
             }
-            if (opponent.GetPlayerState() == PlayerState.Bust)
+            if (opponents.GetPlayerState() == PlayerState.Bust)
             {
                 iWantCard = false;
             }
             return iWantCard;
-       }
 
-        public string GetName()
-        {
-            return _name;
         }
         public Hand GetHand()
         {
             return _cards;
         }
     }
+
+
 }

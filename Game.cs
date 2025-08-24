@@ -1,5 +1,7 @@
 
 
+using System.Diagnostics;
+using System.Reflection;
 using static BlackJackTest.Shoe;
 namespace BlackJackTest
 {
@@ -9,6 +11,7 @@ namespace BlackJackTest
 
         Shoe shoe = new();
 
+
         public Game(int deckCount)
         {
             for (int i = 0; i < deckCount; i++)
@@ -16,9 +19,17 @@ namespace BlackJackTest
                 shoe.AddDeck();
             }
         }
+        public int DeckSize()
+        {
+            return shoe.Size();
+        }
         public void ShuffleShoe()
         {
             shoe.StackOfCards = RandomShuffle(shoe.StackOfCards);
+        }
+        public void AddDiscardToDeck()
+        {
+            shoe.ResetDecks();
         }
         public void ShuffleShoe(int coi)
         {
@@ -35,9 +46,8 @@ namespace BlackJackTest
             }
 
         }
-        public void GivePlayerACard(IPlayer player1)
+        private void GivePlayerACard(IPlayer player1)
         {
-
             player1.TakeCard(shoe.GiveCard());
         }
         public void GivePlayerAHand(IPlayer player1)
@@ -47,21 +57,35 @@ namespace BlackJackTest
             player1.TakeCard(shoe.GiveCard());
         }
 
-        public bool PlayRound(List<IPlayer> players)
+        public bool PlayRound(IPlayer activePlayer,IList<IPlayer> opponents)
         {
-            IPlayer player = players.Last();
-            IPlayer player2 = players.First();
-
-            if (player.WantCard(player2))
+            int cou = 0;
+            foreach (var item in opponents)
             {
-                GivePlayerACard(player);
+                if (activePlayer.WantCard(item))
+                {
+                    cou += 1;
+                }
             }
-            if (Utils.IsPlayerFinished(player))
+            if (cou > 0)
             {
-                Console.WriteLine("---------------------------------");
+                GivePlayerACard(activePlayer);
+            }
+
+            if (Utils.IsPlayerFinished(activePlayer))
+            {
                 return false;
             }
             return true;
+        }
+        public void GiveHandBack(Hand cards)
+        {
+            foreach (var item in cards)
+            {
+                shoe.AddCardToDiscard(item);
+            }
+            Debug.Assert(cards.ResetHand() == 0);
+
         }
 
     }   

@@ -19,10 +19,15 @@ namespace BlackJackTest
 
             }
         }
-
+   
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
+    }
+    public int ResetHand()
+    {
+        hand.Clear();
+        return hand.Count;    
     }
 
     }   

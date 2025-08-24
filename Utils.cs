@@ -25,28 +25,21 @@ namespace BlackJackTest
 
         public static bool IsPlayerFinished(IPlayer player)
         {
-            switch (player.GetPlayerState())
+            return player.GetPlayerState() switch
             {
-                case PlayerState.Bust:
-                case PlayerState.Stand:
-                case PlayerState.TwentyOne:
-                    return true;
-
-                default:
-                    return false;
-            }
-
+                PlayerState.Bust or PlayerState.Stand or PlayerState.TwentyOne => true,
+                _ => false,
+            };
         }
-        public static void WhoWon(IList<IPlayer> players)
+        public static void WhoWon(IPlayer player, IPlayer opponents)
         {
-            IPlayer player = players.Last();
-            IPlayer player2 = players.First();
+            
             if (player.GetPlayerState() == PlayerState.Bust ||
-                player.KnownScore() < player2.KnownScore() &&
-                player2.GetPlayerState() != PlayerState.Bust
+                player.KnownScore() < opponents.KnownScore() &&
+                opponents.GetPlayerState() != PlayerState.Bust
           )
             {
-                Console.WriteLine($"{player2.GetName()} has won");
+                Console.WriteLine($"{opponents.GetName()} has won");
             }
             else
             {

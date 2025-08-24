@@ -23,6 +23,10 @@ namespace BlackJackTest
             }
 
         }
+        public int Size()
+        {
+            return StackOfCards.Count;
+        }
         public void PrintStack()
         {
 
