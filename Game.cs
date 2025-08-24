@@ -6,9 +6,11 @@ namespace BlackJackTest
     public class Game
     {
         Shoe shoe = new();
+        private int _deckCount = 0 ;
 
         public Game(int deckCount)
         {
+            _deckCount = deckCount;
             for (int i = 0; i < deckCount; i++)
             {
                 shoe.AddDeck();
@@ -28,6 +30,7 @@ namespace BlackJackTest
         public void AddDiscardToDeck()
         {
             shoe.ResetDecks();
+            Debug.Assert(shoe.Size() == _deckCount * 52);
         }
 
         public void ShuffleShoe(int coi)
