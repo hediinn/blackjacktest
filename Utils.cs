@@ -31,19 +31,19 @@ namespace BlackJackTest
                 _ => false,
             };
         }
-        public static void WhoWon(IPlayer player, IPlayer opponents)
+        public static IPlayer WhoWon(IPlayer player, IPlayer opponents)
         {
-            
+
             if (player.GetPlayerState() == PlayerState.Bust ||
                 player.KnownScore() < opponents.KnownScore() &&
                 opponents.GetPlayerState() != PlayerState.Bust
           )
             {
-                Console.WriteLine($"{opponents.GetName()} has won");
+                return (opponents);
             }
             else
             {
-                Console.WriteLine($"{player.GetName()} has won");
+                return (player);
             }
 
         }

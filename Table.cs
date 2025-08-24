@@ -112,7 +112,7 @@ namespace BlackJackTest
             Console.WriteLine("#---------------------------------#");
             foreach (var item in GetPlayers())
             {
-                Utils.WhoWon(item, GiveDealer().First());
+                Console.WriteLine($"{Utils.WhoWon(item, GiveDealer().First()).GetName()} Won");
             }
             Console.WriteLine("#---------------------------------#");
         }
